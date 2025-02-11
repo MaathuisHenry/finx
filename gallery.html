@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexible Image Gallery with Multiple Filters</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html">
+      <div class="logo">
+        <img src="images/finx_white.png" alt="Logo" class="logo-img">
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="prototypes.html">Prototypes</a></li>
+      <li><a href="funding.html"><b>Funding & Subsidy</b></a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  
+<div class="filter-menu">
+  <h3>Filter by Criteria (Min Ratings)</h3>
+
+  <div class="slider-column">
+    <div class="slider-container">
+      <label for="understandability-slider">Understandability:</label>
+      <input type="range" id="understandability-slider" min="1" max="10" value="1">
+      <span id="understandability-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="ease_of_understanding-slider">Ease of Understanding:</label>
+      <input type="range" id="ease_of_understanding-slider" min="1" max="10" value="1">
+      <span id="ease_of_understanding-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="ease_of_use-slider">Ease of Use:</label>
+      <input type="range" id="ease_of_use-slider" min="1" max="10" value="1">
+      <span id="ease_of_use-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="satisfaction-slider">Satisfaction:</label>
+      <input type="range" id="satisfaction-slider" min="1" max="10" value="1">
+      <span id="satisfaction-slider-value">1</span>
+    </div>
+  </div>
+
+  <div class="slider-column">
+    <div class="slider-container">
+      <label for="usefulness-slider">Usefulness:</label>
+      <input type="range" id="usefulness-slider" min="1" max="10" value="1">
+      <span id="usefulness-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="trust-slider">Trust:</label>
+      <input type="range" id="trust-slider" min="1" max="10" value="1">
+      <span id="trust-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="typicality-slider">Typicality:</label>
+      <input type="range" id="typicality-slider" min="1" max="10" value="1">
+      <span id="typicality-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="sufficiency-slider">Sufficiency:</label>
+      <input type="range" id="sufficiency-slider" min="1" max="10" value="1">
+      <span id="sufficiency-slider-value">1</span>
+    </div>
+  </div>
+
+  <div class="slider-column">
+    <div class="slider-container">
+      <label for="correctness-slider">Correctness:</label>
+      <input type="range" id="correctness-slider" min="1" max="10" value="1">
+      <span id="correctness-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="compactness-slider">Compactness:</label>
+      <input type="range" id="compactness-slider" min="1" max="10" value="1">
+      <span id="compactness-slider-value">1</span>
+    </div>
+
+    <div class="slider-container">
+      <label for="actionability-slider">Actionability:</label>
+      <input type="range" id="actionability-slider" min="1" max="10" value="1">
+      <span id="actionability-slider-value">1</span>
+    </div>
+  </div>
+
+  <h3>Filter by Explanation Type</h3>
+  <select id="explanation-dropdown" class="filter-dropdown">
+    <option value="">Select an Explanation Type</option>
+    <option value="feature_importance">Feature Importance</option>
+    <option value="counterfactuals">Counterfactuals</option>
+    <option value="contrastive_examples">Contrastive/Similar Examples</option>
+    <option value="decision_rules">Decision Rules</option>
+  </select>
+</div>
+
+
+  <div class="gallery" id="gallery">
+    <div class="image" data-tags="understandability,feature_importance" data-understandability="8" data-ease_of_understanding="7" data-ease_of_use="6" data-satisfaction="9" data-usefulness="8">
+      <img src="images/1.png" alt="Nature Image 1">
+    </div>
+    <div class="image" data-tags="ease_of_use,counterfactuals" data-understandability="5" data-ease_of_understanding="6" data-ease_of_use="7" data-satisfaction="8" data-usefulness="7">
+      <img src="images/2.png" alt="City Image 1">
+    </div>
+    <div class="image" data-tags="satisfaction,decision_rules" data-understandability="9" data-ease_of_understanding="8" data-ease_of_use="7" data-satisfaction="10" data-usefulness="9">
+      <img src="images/3.png" alt="People Image 1">
+    </div>
+  </div>
+
+  <footer>
+    <p>FIN-X. All rights reserved.</p>
+  </footer>
+
+
+
+  <!-- Fullscreen Image Modal -->
+  <div id="image-modal" class="modal hidden">
+    <span class="close" id="close-modal">&times;</span>
+    <img class="modal-content" id="modal-image">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

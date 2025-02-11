@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prototypes - FIN-X</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo-link">
+      <div class="logo">
+        <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="approach.html">Approach</a></li>
+      <li><a href="prototypes.html"><strong>Prototypes</strong></a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="funding.html">Funding</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Filter Menu -->
+  <aside class="filter-menu">
+    <h3>Filter by Criteria (Min Ratings)</h3>
+    <div class="slider-column">
+      <div class="slider-container">
+        <label for="understandability-slider" class="dialog-label" data-info="This measures how understandable the explanation is to the user.">
+          Understandability:
+        </label>
+        <input type="range" id="understandability-slider" min="1" max="10" value="1" />
+        <span id="understandability-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="ease_of_understanding-slider" class="dialog-label" data-info="This measures how easy it is to understand the explanation.">
+          Ease of Understanding:
+        </label>
+        <input type="range" id="ease_of_understanding-slider" min="1" max="10" value="1" />
+        <span id="ease_of_understanding-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="ease_of_use-slider" class="dialog-label" data-info="This measures how easy it is to use the prototype.">
+          Ease of Use:
+        </label>
+        <input type="range" id="ease_of_use-slider" min="1" max="10" value="1" />
+        <span id="ease_of_use-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="satisfaction-slider" class="dialog-label" data-info="This measures the satisfaction level of the user.">
+          Satisfaction:
+        </label>
+        <input type="range" id="satisfaction-slider" min="1" max="10" value="1" />
+        <span id="satisfaction-slider-value">1</span>
+      </div>
+    </div>
+
+    <div class="slider-column">
+      <div class="slider-container">
+        <label for="usefulness-slider" class="dialog-label" data-info="This measures how useful the explanation is to the user.">
+          Usefulness:
+        </label>
+        <input type="range" id="usefulness-slider" min="1" max="10" value="1" />
+        <span id="usefulness-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="trust-slider" class="dialog-label" data-info="This measures the level of trust in the explanation.">
+          Trust:
+        </label>
+        <input type="range" id="trust-slider" min="1" max="10" value="1" />
+        <span id="trust-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="typicality-slider" class="dialog-label" data-info="This measures how typical the explanation is compared to others.">
+          Typicality:
+        </label>
+        <input type="range" id="typicality-slider" min="1" max="10" value="1" />
+        <span id="typicality-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="sufficiency-slider" class="dialog-label" data-info="This measures whether the explanation is sufficient.">
+          Sufficiency:
+        </label>
+        <input type="range" id="sufficiency-slider" min="1" max="10" value="1" />
+        <span id="sufficiency-slider-value">1</span>
+      </div>
+    </div>
+
+    <div class="slider-column">
+      <div class="slider-container">
+        <label for="correctness-slider" class="dialog-label" data-info="This measures the correctness of the explanation.">
+          Correctness:
+        </label>
+        <input type="range" id="correctness-slider" min="1" max="10" value="1" />
+        <span id="correctness-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="compactness-slider" class="dialog-label" data-info="This measures the compactness of the explanation.">
+          Compactness:
+        </label>
+        <input type="range" id="compactness-slider" min="1" max="10" value="1" />
+        <span id="compactness-slider-value">1</span>
+      </div>
+      <div class="slider-container">
+        <label for="actionability-slider" class="dialog-label" data-info="This measures the actionability of the explanation.">
+          Actionability:
+        </label>
+        <input type="range" id="actionability-slider" min="1" max="10" value="1" />
+        <span id="actionability-slider-value">1</span>
+      </div>
+    </div>
+
+    <h3>Filter by Explanation Type</h3>
+    <select id="explanation-dropdown" class="filter-dropdown">
+      <option value="">All Explanation Types</option>
+      <option value="feature_importance">Feature Importance</option>
+      <option value="counterfactuals">Counterfactuals</option>
+      <option value="contrastive_examples">Contrastive/Similar Examples</option>
+      <option value="decision_rules">Decision Rules</option>
+    </select>
+  </aside>
+
+  <!-- Gallery Header with Sort Option -->
+  <header class="gallery-header">
+    <div class="sort-by-container">
+      <span>Sort by:</span>
+      <select id="sort-dropdown">
+        <option value="understandability">Understandability</option>
+        <option value="ease_of_understanding">Ease of Understanding</option>
+        <option value="ease_of_use">Ease of Use</option>
+        <option value="satisfaction">Satisfaction</option>
+        <option value="usefulness">Usefulness</option>
+        <option value="trust">Trust</option>
+        <option value="typicality">Typicality</option>
+        <option value="sufficiency">Sufficiency</option>
+        <option value="correctness">Correctness</option>
+        <option value="compactness">Compactness</option>
+        <option value="actionability">Actionability</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Main Gallery -->
+  <main class="gallery" id="gallery">
+    <!-- Gallery Item: Decision Rules Prototype 1 -->
+    <div class="image" prototype="dr_1" data-tags="decision_rules" 
+         data-understandability="8.66" data-ease_of_understanding="7.33" data-ease_of_use="7.33" 
+         data-satisfaction="6.66" data-usefulness="7.33" data-trust="7.33" data-typicality="8.66" 
+         data-sufficiency="7.33" data-correctness="8.66" data-compactness="8" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/dr_1.png" alt="Prototype Image 1">
+      </div>
+      <div class="text-container">
+        <h3>Decision Rules: 1</h3>
+        <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Decision Rules Prototype 2 -->
+    <div class="image" prototype="dr_2" data-tags="decision_rules" 
+         data-understandability="8.66" data-ease_of_understanding="8.66" data-ease_of_use="8.66" 
+         data-satisfaction="8.66" data-usefulness="8.66" data-trust="8.66" data-typicality="8.66" 
+         data-sufficiency="9.33" data-correctness="9.33" data-compactness="10" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/dr_2.png" alt="Prototype Image 2">
+      </div>
+      <div class="text-container">
+        <h3>Decision Rules: 2</h3>
+        <p>This is a prototype related to decision rules. The ratings are moderate.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Decision Rules Prototype 3 -->
+    <div class="image" prototype="dr_3" data-tags="decision_rules" 
+         data-understandability="7.33" data-ease_of_understanding="6" data-ease_of_use="6.66" 
+         data-satisfaction="7.33" data-usefulness="7.33" data-trust="8.66" data-typicality="6.66" 
+         data-sufficiency="6.66" data-correctness="8" data-compactness="4.66" data-actionability="6">
+      <div class="image-container">
+        <img src="images/dr_3.png" alt="Prototype Image 3">
+      </div>
+      <div class="text-container">
+        <h3>Decision Rules: 3</h3>
+        <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Decision Rules Prototype 4 -->
+    <div class="image" prototype="dr_4" data-tags="decision_rules" 
+         data-understandability="7.33" data-ease_of_understanding="6" data-ease_of_use="6.66" 
+         data-satisfaction="6" data-usefulness="7.33" data-trust="8" data-typicality="6.66" 
+         data-sufficiency="6" data-correctness="8" data-compactness="5.33" data-actionability="6">
+      <div class="image-container">
+        <img src="images/dr_4.png" alt="Prototype Image 4">
+      </div>
+      <div class="text-container">
+        <h3>Decision Rules: 4</h3>
+        <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Decision Rules Prototype 5 -->
+    <div class="image" prototype="dr_5" data-tags="decision_rules" 
+         data-understandability="7.33" data-ease_of_understanding="7.33" data-ease_of_use="7.33" 
+         data-satisfaction="7.33" data-usefulness="6.66" data-trust="8.66" data-typicality="6.66" 
+         data-sufficiency="7.33" data-correctness="8" data-compactness="6" data-actionability="6">
+      <div class="image-container">
+        <img src="images/dr_5.png" alt="Prototype Image 5">
+      </div>
+      <div class="text-container">
+        <h3>Decision Rules: 5</h3>
+        <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Counterfactuals Prototype 1 -->
+    <div class="image" prototype="cf_1" data-tags="counterfactuals" 
+         data-understandability="9.33" data-ease_of_understanding="8" data-ease_of_use="8" 
+         data-satisfaction="7.33" data-usefulness="6" data-trust="8" data-typicality="7.33" 
+         data-sufficiency="6.66" data-correctness="8" data-compactness="8.66" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/cf_1.png" alt="Prototype Image 6">
+      </div>
+      <div class="text-container">
+        <h3>Counterfactuals: 1</h3>
+        <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Counterfactuals Prototype 2 -->
+    <div class="image" prototype="cf_2" data-tags="counterfactuals" 
+         data-understandability="7.33" data-ease_of_understanding="6" data-ease_of_use="6.66" 
+         data-satisfaction="6" data-usefulness="6.66" data-trust="8" data-typicality="6" 
+         data-sufficiency="8" data-correctness="8" data-compactness="6" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/cf_2.png" alt="Prototype Image 7">
+      </div>
+      <div class="text-container">
+        <h3>Counterfactuals: 2</h3>
+        <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Counterfactuals Prototype 3 -->
+    <div class="image" prototype="cf_3" data-tags="counterfactuals" 
+         data-understandability="7.33" data-ease_of_understanding="6" data-ease_of_use="6.66" 
+         data-satisfaction="7.33" data-usefulness="6.66" data-trust="6" data-typicality="7.33" 
+         data-sufficiency="8.66" data-correctness="8" data-compactness="4.66" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/cf_3.png" alt="Prototype Image 8">
+      </div>
+      <div class="text-container">
+        <h3>Counterfactuals: 3</h3>
+        <p>This is a prototype related to counterfactuals. The ratings are moderate.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Counterfactuals Prototype 4 -->
+    <div class="image" prototype="cf_4" data-tags="counterfactuals" 
+         data-understandability="9.33" data-ease_of_understanding="8.66" data-ease_of_use="8.66" 
+         data-satisfaction="10" data-usefulness="9.33" data-trust="8.66" data-typicality="8" 
+         data-sufficiency="9.33" data-correctness="10" data-compactness="8.66" data-actionability="7.33">
+      <div class="image-container">
+        <img src="images/cf_4.png" alt="Prototype Image 9">
+      </div>
+      <div class="text-container">
+        <h3>Counterfactuals: 4</h3>
+        <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Counterfactuals Prototype 5 -->
+    <div class="image" prototype="cf_5" data-tags="counterfactuals" 
+         data-understandability="8.66" data-ease_of_understanding="8" data-ease_of_use="8" 
+         data-satisfaction="8.66" data-usefulness="8" data-trust="8.66" data-typicality="8" 
+         data-sufficiency="8.66" data-correctness="8.66" data-compactness="8" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/cf_5.png" alt="Prototype Image 10">
+      </div>
+      <div class="text-container">
+        <h3>Counterfactuals: 5</h3>
+        <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Contrastive/Similar Examples Prototype 1 -->
+    <div class="image" prototype="ce_1" data-tags="contrastive_examples" 
+         data-understandability="7.33" data-ease_of_understanding="4.66" data-ease_of_use="6" 
+         data-satisfaction="6.66" data-usefulness="7.33" data-trust="8" data-typicality="7.33" 
+         data-sufficiency="7.33" data-correctness="8" data-compactness="6.66" data-actionability="5.33">
+      <div class="image-container">
+        <img src="images/ce_1.png" alt="Prototype Image 11">
+      </div>
+      <div class="text-container">
+        <h3>Contrastive / Similar Examples: 1</h3>
+        <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Contrastive/Similar Examples Prototype 2 -->
+    <div class="image" prototype="ce_2" data-tags="contrastive_examples" 
+         data-understandability="7.33" data-ease_of_understanding="6" data-ease_of_use="6" 
+         data-satisfaction="7.33" data-usefulness="6.66" data-trust="8" data-typicality="8" 
+         data-sufficiency="8" data-correctness="8" data-compactness="8.66" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/ce_2.png" alt="Prototype Image 12">
+      </div>
+      <div class="text-container">
+        <h3>Contrastive / Similar Examples: 2</h3>
+        <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Contrastive/Similar Examples Prototype 3 -->
+    <div class="image" prototype="ce_3" data-tags="contrastive_examples" 
+         data-understandability="8.66" data-ease_of_understanding="8" data-ease_of_use="8.66" 
+         data-satisfaction="8.66" data-usefulness="8" data-trust="8" data-typicality="8.66" 
+         data-sufficiency="7.33" data-correctness="8" data-compactness="7.33" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/ce_3.png" alt="Prototype Image 13">
+      </div>
+      <div class="text-container">
+        <h3>Contrastive / Similar Examples: 3</h3>
+        <p>This is a prototype related to feature importance. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Contrastive/Similar Examples Prototype 4 -->
+    <div class="image" prototype="ce_4" data-tags="contrastive_examples" 
+         data-understandability="6.66" data-ease_of_understanding="5.33" data-ease_of_use="6" 
+         data-satisfaction="6.66" data-usefulness="7.33" data-trust="8" data-typicality="8" 
+         data-sufficiency="6.66" data-correctness="7.33" data-compactness="6.66" data-actionability="6">
+      <div class="image-container">
+        <img src="images/ce_4.png" alt="Prototype Image 14">
+      </div>
+      <div class="text-container">
+        <h3>Contrastive / Similar Examples: 4</h3>
+        <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Contrastive/Similar Examples Prototype 5 -->
+    <div class="image" prototype="ce_5" data-tags="contrastive_examples" 
+         data-understandability="8.66" data-ease_of_understanding="9.33" data-ease_of_use="9.33" 
+         data-satisfaction="9.33" data-usefulness="7.33" data-trust="9.33" data-typicality="8.66" 
+         data-sufficiency="9.33" data-correctness="9.33" data-compactness="8" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/ce_5.png" alt="Prototype Image 15">
+      </div>
+      <div class="text-container">
+        <h3>Contrastive / Similar Examples: 5</h3>
+        <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Feature Importance Prototype 1 -->
+    <div class="image" prototype="fi_1" data-tags="feature_importance" 
+         data-understandability="9.33" data-ease_of_understanding="9.33" data-ease_of_use="9.33" 
+         data-satisfaction="8" data-usefulness="8.66" data-trust="8" data-typicality="8.66" 
+         data-sufficiency="8" data-correctness="8" data-compactness="8.66" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/fi_1.png" alt="Prototype Image 16">
+      </div>
+      <div class="text-container">
+        <h3>Feature Importance: 1</h3>
+        <p>This is a prototype related to feature importance. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Feature Importance Prototype 2 -->
+    <div class="image" prototype="fi_2" data-tags="feature_importance" 
+         data-understandability="9.33" data-ease_of_understanding="8.66" data-ease_of_use="7.33" 
+         data-satisfaction="6" data-usefulness="7.33" data-trust="8" data-typicality="8" 
+         data-sufficiency="8.66" data-correctness="8.66" data-compactness="6" data-actionability="6">
+      <div class="image-container">
+        <img src="images/fi_2.png" alt="Prototype Image 17">
+      </div>
+      <div class="text-container">
+        <h3>Feature Importance: 2</h3>
+        <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Feature Importance Prototype 3 -->
+    <div class="image" prototype="fi_3" data-tags="feature_importance" 
+         data-understandability="8" data-ease_of_understanding="8" data-ease_of_use="7.33" 
+         data-satisfaction="7.33" data-usefulness="6" data-trust="8" data-typicality="8" 
+         data-sufficiency="6.66" data-correctness="8" data-compactness="8.66" data-actionability="6">
+      <div class="image-container">
+        <img src="images/fi_3.png" alt="Prototype Image 18">
+      </div>
+      <div class="text-container">
+        <h3>Feature Importance: 3</h3>
+        <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Feature Importance Prototype 4 -->
+    <div class="image" prototype="fi_4" data-tags="feature_importance" 
+         data-understandability="9.33" data-ease_of_understanding="8.66" data-ease_of_use="8.66" 
+         data-satisfaction="8.66" data-usefulness="7.33" data-trust="8.66" data-typicality="8.66" 
+         data-sufficiency="7.33" data-correctness="7.33" data-compactness="6.66" data-actionability="6.66">
+      <div class="image-container">
+        <img src="images/fi_4.png" alt="Prototype Image 19">
+      </div>
+      <div class="text-container">
+        <h3>Feature Importance: 4</h3>
+        <p>This is a prototype related to feature importance. The understandability and usefulness are rated high.</p>
+      </div>
+    </div>
+
+    <!-- Gallery Item: Feature Importance Prototype 5 -->
+    <div class="image" prototype="fi_5" data-tags="feature_importance" 
+         data-understandability="8.66" data-ease_of_understanding="6" data-ease_of_use="6" 
+         data-satisfaction="5.33" data-usefulness="6" data-trust="6.66" data-typicality="6" 
+         data-sufficiency="5.33" data-correctness="6.66" data-compactness="5.33" data-actionability="6">
+      <div class="image-container">
+        <img src="images/fi_5.png" alt="Prototype Image 20">
+      </div>
+      <div class="text-container">
+        <h3>Feature Importance: 5</h3>
+        <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>FIN-X. All rights reserved.</p>
+  </footer>
+
+  <!-- Tooltip Dialog -->
+  <div id="info-dialog" class="dialog"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
