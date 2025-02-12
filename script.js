@@ -1,3 +1,7 @@
+// Global mapping: slider values to numeric thresholds.
+// 1 ("Low") → 1, 2 ("Med") → 7, 3 ("High") → 7.5.
+const sliderMapping = { "1": 1, "2": 7, "3": 7.5 };
+
 document.addEventListener('DOMContentLoaded', function () {
   const sliders = document.querySelectorAll('.filter-menu input[type="range"]');
   const explanationDropdown = document.getElementById('explanation-dropdown');
@@ -6,26 +10,37 @@ document.addEventListener('DOMContentLoaded', function () {
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
 
-  // Update slider display and trigger filtering when sliders change
+  // Helper: Convert slider numeric value to its label.
+  function getSliderLabel(value) {
+    const numValue = parseInt(value);
+    if (numValue === 1) return "Low";
+    if (numValue === 2) return "Med";
+    if (numValue === 3) return "High";
+    return "Low";
+  }
+
+  // Update slider display and trigger filtering when sliders change.
   sliders.forEach(slider => {
     const valueDisplay = document.getElementById(slider.id + '-value');
+    // Set initial label.
+    valueDisplay.textContent = getSliderLabel(slider.value);
     slider.addEventListener('input', function () {
-      valueDisplay.textContent = slider.value + "/10";
+      valueDisplay.textContent = getSliderLabel(slider.value);
       filterImages();
     });
   });
 
-  // Toggle mobile navigation on hamburger click
+  // Toggle mobile navigation on hamburger click.
   menuToggle.addEventListener('click', function() {
     navLinks.classList.toggle('active');
   });
 
-  // Listen for changes on the sort dropdown
+  // Listen for changes on the sort dropdown.
   sortDropdown.addEventListener('change', function () {
     filterImages();
   });
 
-  // When an image is clicked, redirect to its detail page based on its prototype attribute
+  // When an image is clicked, redirect to its detail page.
   images.forEach(image => {
     image.addEventListener('click', function () {
       const imageContainer = this.closest('.image');
@@ -38,12 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Listen for changes on the explanation dropdown
+  // Listen for changes on the explanation dropdown.
   explanationDropdown.addEventListener('change', function () {
     filterImages();
   });
 
-  // Tooltip for dialog labels
+  // Tooltip for dialog labels.
   const labels = document.querySelectorAll('.dialog-label');
   const infoDialog = document.getElementById('info-dialog');
 
@@ -62,14 +77,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Card resize slider functionality
+  // Card resize slider functionality.
   const cardResizeSlider = document.getElementById('card-resize-slider-input');
   cardResizeSlider.addEventListener('input', function() {
     const newSize = cardResizeSlider.value + "px";
     document.documentElement.style.setProperty('--card-min', newSize);
   });
 
-  // Initial filtering and sorting
+  // Initial filtering and sorting.
   filterImages();
   updateTopCriteria();
 });
@@ -83,14 +98,16 @@ function filterImages() {
   images.forEach(image => {
     let passes = true;
     sliders.forEach(slider => {
+      // Determine the criterion (e.g., "understandability")
       const criteria = slider.id.replace('-slider', '');
-      const minRating = parseFloat(slider.value);
+      // Map the slider's value (1,2,3) to its numeric threshold.
+      const minRating = sliderMapping[slider.value];
       let rating = parseFloat(image.getAttribute(`data-${criteria}`)) || 0;
       if (rating < minRating) {
         passes = false;
       }
     });
-    // Check explanation type filter
+    // Apply the explanation type filter.
     const imageTags = image.getAttribute('data-tags').split(',');
     const matchesExplanation = !selectedExplanation || imageTags.includes(selectedExplanation);
     if (passes && matchesExplanation) {
@@ -108,7 +125,7 @@ function sortImages() {
   const sortCriterion = document.getElementById('sort-dropdown').value || "understandability";
   console.log("Sorting by:", sortCriterion);
 
-  // Get all visible images
+  // Get all visible images.
   const visibleImages = Array.from(gallery.querySelectorAll('.image:not(.hidden)'));
 
   visibleImages.sort((a, b) => {
@@ -119,12 +136,11 @@ function sortImages() {
     return 0;
   });
 
-  // Reorder images in the gallery
+  // Reorder images in the gallery.
   visibleImages.forEach(image => gallery.appendChild(image));
 }
 
 function updateTopCriteria() {
-  // List of criteria keys to consider
   const criteriaKeys = [
     "understandability",
     "ease_of_understanding",
@@ -141,29 +157,23 @@ function updateTopCriteria() {
 
   const cards = document.querySelectorAll('.gallery .image');
   cards.forEach(card => {
-    // Build an array of criteria and their scores
     let scores = criteriaKeys.map(key => {
       return { key: key, value: parseFloat(card.getAttribute(`data-${key}`)) || 0 };
     });
-    // Sort descending by value
     scores.sort((a, b) => b.value - a.value);
-    // Take top 3 criteria
     const top3 = scores.slice(0, 3);
 
-    // Update top criteria container
     let topContainer = card.querySelector('.top-criteria');
     topContainer.innerHTML = "";
     top3.forEach(item => {
       let badge = document.createElement('span');
       badge.className = 'criteria-badge';
-      // Format key: replace underscores with spaces and capitalize each word
       let formattedKey = item.key.replace(/_/g, " ");
       formattedKey = formattedKey.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
       badge.textContent = `${formattedKey}: ${item.value.toFixed(1)}`;
       topContainer.appendChild(badge);
     });
 
-    // Populate the all criteria container
     let allContainer = card.querySelector('.all-criteria');
     let allCriteriaHTML = "<ul>";
     scores.forEach(item => {
@@ -174,10 +184,8 @@ function updateTopCriteria() {
     allCriteriaHTML += "</ul>";
     allContainer.innerHTML = allCriteriaHTML;
 
-    // Set up the toggle button functionality with visual flair
     let toggleButton = card.querySelector('.toggle-all-criteria');
     toggleButton.textContent = "Show All Scores";
-    // Remove any previous event listener to avoid duplicates
     toggleButton.onclick = function () {
       if (allContainer.classList.contains('show')) {
         allContainer.classList.remove('show');

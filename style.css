@@ -11,6 +11,7 @@
   --white:         #fff;
   --border-color:  #ddd;
   --navbar-height: 3rem;
+  --footer-height: 3rem;  /* New variable for footer height */
   --card-min: 350px; /* Minimum card width for the gallery grid */
 }
 
@@ -130,14 +131,16 @@ body {
   position: fixed;
   top: var(--navbar-height);
   left: 0;
+  bottom: var(--footer-height); /* Stops above the footer */
   width: 25%;
   min-width: 380px;
-  height: calc(100vh - 4rem);
   padding: 1rem;
   background-color: var(--white);
   border-right: 1px solid var(--border-color);
-  overflow-y: auto;
-  z-index: 0;
+  overflow-y: scroll;                /* Ensure vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* Enables momentum (bounce) scrolling on iOS */
+  overscroll-behavior: contain;       /* Allow bounce effect when scrolling beyond top/bottom */
+  z-index: 10;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
@@ -537,6 +540,7 @@ footer {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: all 0.3s ease;
+  height: var(--footer-height);
 }
 
 footer p {
