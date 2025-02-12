@@ -14,6 +14,12 @@
         <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
       </div>
     </a>
+
+    <!-- Hamburger Menu Toggle Button for Mobile -->
+    <button class="menu-toggle" aria-label="Toggle navigation">
+      <span class="hamburger"></span>
+    </button>
+
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -35,28 +41,28 @@
           Understandability:
         </label>
         <input type="range" id="understandability-slider" min="1" max="10" value="1" />
-        <span id="understandability-slider-value">1</span>
+        <span id="understandability-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="ease_of_understanding-slider" class="dialog-label" data-info="This measures how easy it is to understand the explanation.">
           Ease of Understanding:
         </label>
         <input type="range" id="ease_of_understanding-slider" min="1" max="10" value="1" />
-        <span id="ease_of_understanding-slider-value">1</span>
+        <span id="ease_of_understanding-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="ease_of_use-slider" class="dialog-label" data-info="This measures how easy it is to use the prototype.">
           Ease of Use:
         </label>
         <input type="range" id="ease_of_use-slider" min="1" max="10" value="1" />
-        <span id="ease_of_use-slider-value">1</span>
+        <span id="ease_of_use-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="satisfaction-slider" class="dialog-label" data-info="This measures the satisfaction level of the user.">
           Satisfaction:
         </label>
         <input type="range" id="satisfaction-slider" min="1" max="10" value="1" />
-        <span id="satisfaction-slider-value">1</span>
+        <span id="satisfaction-slider-value">1/10</span>
       </div>
     </div>
 
@@ -66,28 +72,28 @@
           Usefulness:
         </label>
         <input type="range" id="usefulness-slider" min="1" max="10" value="1" />
-        <span id="usefulness-slider-value">1</span>
+        <span id="usefulness-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="trust-slider" class="dialog-label" data-info="This measures the level of trust in the explanation.">
           Trust:
         </label>
         <input type="range" id="trust-slider" min="1" max="10" value="1" />
-        <span id="trust-slider-value">1</span>
+        <span id="trust-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="typicality-slider" class="dialog-label" data-info="This measures how typical the explanation is compared to others.">
           Typicality:
         </label>
         <input type="range" id="typicality-slider" min="1" max="10" value="1" />
-        <span id="typicality-slider-value">1</span>
+        <span id="typicality-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="sufficiency-slider" class="dialog-label" data-info="This measures whether the explanation is sufficient.">
           Sufficiency:
         </label>
         <input type="range" id="sufficiency-slider" min="1" max="10" value="1" />
-        <span id="sufficiency-slider-value">1</span>
+        <span id="sufficiency-slider-value">1/10</span>
       </div>
     </div>
 
@@ -97,21 +103,21 @@
           Correctness:
         </label>
         <input type="range" id="correctness-slider" min="1" max="10" value="1" />
-        <span id="correctness-slider-value">1</span>
+        <span id="correctness-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="compactness-slider" class="dialog-label" data-info="This measures the compactness of the explanation.">
           Compactness:
         </label>
         <input type="range" id="compactness-slider" min="1" max="10" value="1" />
-        <span id="compactness-slider-value">1</span>
+        <span id="compactness-slider-value">1/10</span>
       </div>
       <div class="slider-container">
         <label for="actionability-slider" class="dialog-label" data-info="This measures the actionability of the explanation.">
           Actionability:
         </label>
         <input type="range" id="actionability-slider" min="1" max="10" value="1" />
-        <span id="actionability-slider-value">1</span>
+        <span id="actionability-slider-value">1/10</span>
       </div>
     </div>
 
@@ -125,23 +131,29 @@
     </select>
   </aside>
 
-  <!-- Gallery Header with Sort Option -->
+  <!-- Gallery Header with Sort & Resize Controls -->
   <header class="gallery-header">
-    <div class="sort-by-container">
-      <span>Sort by:</span>
-      <select id="sort-dropdown">
-        <option value="understandability">Understandability</option>
-        <option value="ease_of_understanding">Ease of Understanding</option>
-        <option value="ease_of_use">Ease of Use</option>
-        <option value="satisfaction">Satisfaction</option>
-        <option value="usefulness">Usefulness</option>
-        <option value="trust">Trust</option>
-        <option value="typicality">Typicality</option>
-        <option value="sufficiency">Sufficiency</option>
-        <option value="correctness">Correctness</option>
-        <option value="compactness">Compactness</option>
-        <option value="actionability">Actionability</option>
-      </select>
+    <div class="gallery-controls">
+      <div class="sort-by-container">
+        <span>Sort by:</span>
+        <select id="sort-dropdown">
+          <option value="understandability">Understandability</option>
+          <option value="ease_of_understanding">Ease of Understanding</option>
+          <option value="ease_of_use">Ease of Use</option>
+          <option value="satisfaction">Satisfaction</option>
+          <option value="usefulness">Usefulness</option>
+          <option value="trust">Trust</option>
+          <option value="typicality">Typicality</option>
+          <option value="sufficiency">Sufficiency</option>
+          <option value="correctness">Correctness</option>
+          <option value="compactness">Compactness</option>
+          <option value="actionability">Actionability</option>
+        </select>
+      </div>
+      <div class="card-resize-container">
+        <label for="card-resize-slider-input">Resize Cards:</label>
+        <input type="range" id="card-resize-slider-input" min="200" max="600" value="350">
+      </div>
     </div>
   </header>
 
@@ -158,6 +170,11 @@
       <div class="text-container">
         <h3>Decision Rules: 1</h3>
         <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria">
+          <!-- All scores will be populated here -->
+        </div>
       </div>
     </div>
 
@@ -172,6 +189,9 @@
       <div class="text-container">
         <h3>Decision Rules: 2</h3>
         <p>This is a prototype related to decision rules. The ratings are moderate.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -186,6 +206,9 @@
       <div class="text-container">
         <h3>Decision Rules: 3</h3>
         <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -200,6 +223,9 @@
       <div class="text-container">
         <h3>Decision Rules: 4</h3>
         <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -214,6 +240,9 @@
       <div class="text-container">
         <h3>Decision Rules: 5</h3>
         <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -228,6 +257,9 @@
       <div class="text-container">
         <h3>Counterfactuals: 1</h3>
         <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -242,6 +274,9 @@
       <div class="text-container">
         <h3>Counterfactuals: 2</h3>
         <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -256,6 +291,9 @@
       <div class="text-container">
         <h3>Counterfactuals: 3</h3>
         <p>This is a prototype related to counterfactuals. The ratings are moderate.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -270,6 +308,9 @@
       <div class="text-container">
         <h3>Counterfactuals: 4</h3>
         <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -284,6 +325,9 @@
       <div class="text-container">
         <h3>Counterfactuals: 5</h3>
         <p>This is a prototype related to counterfactuals. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -298,6 +342,9 @@
       <div class="text-container">
         <h3>Contrastive / Similar Examples: 1</h3>
         <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -312,6 +359,9 @@
       <div class="text-container">
         <h3>Contrastive / Similar Examples: 2</h3>
         <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -326,6 +376,9 @@
       <div class="text-container">
         <h3>Contrastive / Similar Examples: 3</h3>
         <p>This is a prototype related to feature importance. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -340,6 +393,9 @@
       <div class="text-container">
         <h3>Contrastive / Similar Examples: 4</h3>
         <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -354,6 +410,9 @@
       <div class="text-container">
         <h3>Contrastive / Similar Examples: 5</h3>
         <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -368,6 +427,9 @@
       <div class="text-container">
         <h3>Feature Importance: 1</h3>
         <p>This is a prototype related to feature importance. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -382,6 +444,9 @@
       <div class="text-container">
         <h3>Feature Importance: 2</h3>
         <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -396,6 +461,9 @@
       <div class="text-container">
         <h3>Feature Importance: 3</h3>
         <p>This is a prototype related to decision rules. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -410,6 +478,9 @@
       <div class="text-container">
         <h3>Feature Importance: 4</h3>
         <p>This is a prototype related to feature importance. The understandability and usefulness are rated high.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
 
@@ -424,6 +495,9 @@
       <div class="text-container">
         <h3>Feature Importance: 5</h3>
         <p>This is a prototype related to ease of use. The ratings are moderate.</p>
+        <div class="top-criteria"></div>
+        <button class="toggle-all-criteria">Show All Scores</button>
+        <div class="all-criteria"></div>
       </div>
     </div>
   </main>

@@ -11,6 +11,7 @@
   --white:         #fff;
   --border-color:  #ddd;
   --navbar-height: 3rem;
+  --card-min: 350px; /* Minimum card width for the gallery grid */
 }
 
 /* ========================================================================
@@ -43,7 +44,6 @@ body {
   left: 0;
   width: 100%;
   height: var(--navbar-height);
-  /* Add a subtle gradient to hint interactivity */
   background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
   color: var(--white);
   display: flex;
@@ -63,10 +63,12 @@ body {
   height: var(--navbar-height);
 }
 
+/* --- Navigation Links --- */
 .nav-links {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  transition: all 0.3s ease;
 }
 
 .nav-links li {
@@ -84,6 +86,43 @@ body {
   text-decoration: underline;
 }
 
+/* --- Hamburger Toggle Button Styles --- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hamburger {
+  width: 25px;
+  height: 2px;
+  background-color: var(--white);
+  display: block;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  width: 25px;
+  height: 2px;
+  background-color: var(--white);
+  position: absolute;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
 /* ========================================================================
    Filter Menu
    ======================================================================== */
@@ -92,13 +131,15 @@ body {
   top: var(--navbar-height);
   left: 0;
   width: 25%;
+  min-width: 380px;
   height: calc(100vh - 4rem);
   padding: 1rem;
   background-color: var(--white);
   border-right: 1px solid var(--border-color);
   overflow-y: auto;
   z-index: 0;
-  box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
 .filter-menu h3 {
@@ -122,7 +163,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Add an info icon after labels to signal more info is available */
 .dialog-label::after {
   content: " ℹ";
   font-size: 0.9rem;
@@ -137,7 +177,6 @@ body {
   cursor: pointer;
 }
 
-/* Custom slider track and thumb */
 .slider-container input[type="range"] {
   flex: 1;
   max-width: 60%;
@@ -145,7 +184,7 @@ body {
   cursor: pointer;
 }
 
-/* Webkit track */
+/* Webkit Range */
 .slider-container input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
   background: var(--border-color);
@@ -163,7 +202,7 @@ body {
   margin-top: -4px;
 }
 
-/* Firefox track and thumb */
+/* Firefox Range */
 .slider-container input[type="range"]::-moz-range-track {
   height: 8px;
   background: var(--border-color);
@@ -195,13 +234,14 @@ body {
   background-color: var(--white);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  /* Remove default appearance and add a custom down arrow */
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.5rem center;
   background-size: 1rem;
+  transition: all 0.3s ease;
 }
+
 .filter-menu .filter-dropdown:focus {
   outline: 3px solid #3498db;
   outline-offset: 2px;
@@ -237,19 +277,44 @@ body {
 /* --- Gallery Grid --- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* Use min() so that if --card-min is larger than the container, the column width becomes 100% */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min)), 1fr));
   gap: 1rem;
-  width: 60%;
   margin-top: -3rem;
-  margin-left: 20%;
+  margin-left: calc(max(25%, 380px) + 1rem);
+  margin-right: 1rem;
+  width: calc(100% - max(25%, 380px) - 2rem);
   padding-bottom: 10rem;
+  transition: all 0.3s ease;
 }
 
-/* --- Gallery Header --- */
+/* --- Gallery Header & Controls --- */
 .gallery-header {
-  width: calc(100% - 20%);
   margin: 5rem auto;
-  text-align: right;
+  margin-left: max(25%, 380px);
+  margin-right: 1rem;
+  width: calc(100% - max(25%, 380px) - 1rem);
+  padding: 0 1rem;
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sort-by-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sort-by-container span {
+  font-size: 1rem;
+  color: var(--text-color);
 }
 
 .sort-by-container select {
@@ -257,12 +322,26 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 5px;
   background-color: var(--white);
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.5rem center;
-  background-size: 1rem;
-  cursor: pointer;
+  min-width: 200px;
+}
+
+.card-resize-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-resize-container label {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.card-resize-container input[type="range"] {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--white);
+  min-width: 200px;
 }
 
 /* ========================================================================
@@ -278,32 +357,40 @@ body {
   border-radius: 8px;
   background-color: var(--white);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .image:hover,
 .gallery-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.10);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
+
 .image-container {
   width: 100%;
   overflow: hidden;
   border-radius: 8px;
+  transition: all 0.3s ease;
 }
+
 .image-container img {
   width: 100%;
   height: auto;
   max-height: 300px;
   object-fit: contain;
   display: block;
+  transition: transform 0.3s ease;
 }
+
 .text-container {
   margin-top: auto;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  transition: all 0.3s ease;
 }
+
 .text-container h3 {
   font-size: 1.2rem;
   font-weight: bold;
@@ -311,11 +398,69 @@ body {
   margin: 0;
   padding-bottom: 0.25rem;
 }
+
 .text-container p {
   font-size: 1rem;
   color: var(--light-text);
   line-height: 1.6;
-  margin: 0;
+}
+
+/* --- Top-3 Criteria Badge Styles --- */
+.top-criteria {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.criteria-badge {
+  background-color: var(--accent-color);
+  color: var(--white);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* --- Toggle All Criteria Button & Disclosure --- */
+.toggle-all-criteria {
+  background-color: var(--accent-color);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+  position: relative;
+  padding-right: 30px;
+}
+.toggle-all-criteria:hover {
+  background-color: var(--primary-dark);
+}
+.toggle-all-criteria::after {
+  content: "▼";
+  position: absolute;
+  right: 10px;
+  transition: transform 0.3s ease;
+}
+.toggle-all-criteria.expanded::after {
+  transform: rotate(180deg);
+}
+
+/* Initially collapsed all scores panel with smooth transition */
+.all-criteria {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+.all-criteria.show {
+  max-height: 500px;
+  opacity: 1;
 }
 
 /* ========================================================================
@@ -331,7 +476,9 @@ body {
   font-size: 14px;
   max-width: 200px;
   z-index: 1000;
+  transition: opacity 0.3s ease;
 }
+
 .dialog.show {
   display: block;
 }
@@ -389,7 +536,9 @@ footer {
   left: 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  transition: all 0.3s ease;
 }
+
 footer p {
   margin: 0;
   font-size: 0.875rem;
@@ -410,6 +559,7 @@ form textarea {
   margin-bottom: 1rem;
   border-radius: 5px;
   border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
 }
 form textarea {
   resize: vertical;
@@ -421,7 +571,7 @@ form input[type="submit"] {
   cursor: pointer;
   padding: 0.75rem;
   font-size: 1rem;
-  transition: background-color 0.3s, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 form input[type="submit"]:hover {
   background-color: #444;
@@ -435,7 +585,7 @@ form input[type="submit"]:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .toggle-btn:hover {
   background-color: #2980b9;
@@ -455,6 +605,7 @@ section {
   background-color: var(--white);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 h2 {
   font-size: 1.5rem;
@@ -473,13 +624,50 @@ p {
   .filter-menu {
     position: relative;
     width: 100%;
+    min-width: 300px;
     height: auto;
     border-right: none;
   }
   
   .gallery {
+    width: calc(100% - 2rem);
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .gallery-header {
+    margin: 5rem 1rem 0 1rem;
+    width: calc(100% - 2rem);
+    padding: 0 1rem;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .nav-links {
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
     width: 100%;
-    margin-left: 0;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    flex-direction: column;
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .nav-links.active {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .nav-links li {
+    margin: 1rem 0;
+    text-align: center;
   }
 }
 
@@ -520,7 +708,7 @@ p {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: block;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 .detail-image img:hover {
   transform: scale(1.05);
@@ -541,7 +729,7 @@ p {
   color: var(--white);
   text-decoration: none;
   border-radius: 5px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 .back-btn:hover {
   background-color: var(--primary-dark);
