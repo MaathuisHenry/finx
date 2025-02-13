@@ -451,6 +451,25 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
 }
 
+/* --- All Criteria Container (initially hidden) --- */
+.all-criteria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+/* When expanded, show all criteria with extra top margin for spacing */
+.all-criteria.show {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+/* --- Badge Styling (applied to both top and all criteria) --- */
 .criteria-badge {
   background-color: var(--accent-color);
   color: var(--white);
@@ -470,7 +489,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   position: relative;
   padding-right: 30px;
 }
@@ -487,16 +506,9 @@ h1, h2, h3, h4, h5, h6 {
   transform: rotate(180deg);
 }
 
-/* Initially collapsed all scores panel with smooth transition */
-.all-criteria {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-}
-.all-criteria.show {
-  max-height: 500px;
-  opacity: 1;
+/* A new class to hide the top criteria container when showing all 11 */
+.criteria-hidden {
+  display: none;
 }
 
 /* ========================================================================
@@ -779,12 +791,4 @@ p {
 }
 .back-btn:hover {
   background-color: var(--primary-dark);
-}
-
-/* Separator between images */
-.separator {
-  width: 80%;
-  border: 0;
-  border-top: 1px solid var(--border-color);
-  margin: 1rem 0;
 }

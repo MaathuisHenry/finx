@@ -2,6 +2,15 @@
 // 1 ("Low") → 1, 2 ("Med") → 7, 3 ("High") → 7.5.
 const sliderMapping = { "1": 1, "2": 7, "3": 7.5 };
 
+// Debounce helper to limit function execution rate.
+function debounce(func, delay) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const sliders = document.querySelectorAll('.filter-menu input[type="range"]');
   const explanationDropdown = document.getElementById('explanation-dropdown');
@@ -9,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const images = document.querySelectorAll('.gallery .image img');
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+  const filterMenu = document.querySelector('.filter-menu');
 
   // Helper: Convert slider numeric value to its label.
   function getSliderLabel(value) {
@@ -19,28 +30,37 @@ document.addEventListener('DOMContentLoaded', function () {
     return "Low";
   }
 
-  // Update slider display and trigger filtering when sliders change.
+  // Create a debounced version of filterImages.
+  const debouncedFilterImages = debounce(filterImages, 300);
+
+  // Update slider labels and trigger filtering.
   sliders.forEach(slider => {
     const valueDisplay = document.getElementById(slider.id + '-value');
-    // Set initial label.
     valueDisplay.textContent = getSliderLabel(slider.value);
     slider.addEventListener('input', function () {
       valueDisplay.textContent = getSliderLabel(slider.value);
-      filterImages();
+      debouncedFilterImages();
     });
   });
 
-  // Toggle mobile navigation on hamburger click.
+  // Toggle mobile navigation.
   menuToggle.addEventListener('click', function() {
     navLinks.classList.toggle('active');
   });
 
-  // Listen for changes on the sort dropdown.
+  // Toggle mobile filter menu overlay.
+  if (mobileFilterToggle) {
+    mobileFilterToggle.addEventListener('click', function() {
+      filterMenu.classList.toggle('active');
+    });
+  }
+
+  // Listen for sort dropdown changes.
   sortDropdown.addEventListener('change', function () {
     filterImages();
   });
 
-  // When an image is clicked, redirect to its detail page.
+  // When an image is clicked, go to its detail page.
   images.forEach(image => {
     image.addEventListener('click', function () {
       const imageContainer = this.closest('.image');
@@ -53,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Listen for changes on the explanation dropdown.
+  // Listen for explanation dropdown changes.
   explanationDropdown.addEventListener('change', function () {
     filterImages();
   });
@@ -84,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.documentElement.style.setProperty('--card-min', newSize);
   });
 
-  // Initial filtering and sorting.
+  // Initial filtering and criteria display.
   filterImages();
   updateTopCriteria();
 });
@@ -98,22 +118,21 @@ function filterImages() {
   images.forEach(image => {
     let passes = true;
     sliders.forEach(slider => {
-      // Determine the criterion (e.g., "understandability")
       const criteria = slider.id.replace('-slider', '');
-      // Map the slider's value (1,2,3) to its numeric threshold.
       const minRating = sliderMapping[slider.value];
       let rating = parseFloat(image.getAttribute(`data-${criteria}`)) || 0;
       if (rating < minRating) {
         passes = false;
       }
     });
-    // Apply the explanation type filter.
     const imageTags = image.getAttribute('data-tags').split(',');
     const matchesExplanation = !selectedExplanation || imageTags.includes(selectedExplanation);
     if (passes && matchesExplanation) {
       image.classList.remove('hidden');
+      image.style.opacity = "1";
     } else {
       image.classList.add('hidden');
+      image.style.opacity = "0";
     }
   });
 
@@ -123,20 +142,14 @@ function filterImages() {
 function sortImages() {
   const gallery = document.getElementById('gallery');
   const sortCriterion = document.getElementById('sort-dropdown').value || "understandability";
-  console.log("Sorting by:", sortCriterion);
-
-  // Get all visible images.
   const visibleImages = Array.from(gallery.querySelectorAll('.image:not(.hidden)'));
 
   visibleImages.sort((a, b) => {
     const aRating = parseFloat(a.getAttribute(`data-${sortCriterion}`)) || 0;
     const bRating = parseFloat(b.getAttribute(`data-${sortCriterion}`)) || 0;
-    if (aRating > bRating) return -1;
-    if (aRating < bRating) return 1;
-    return 0;
+    return bRating - aRating;
   });
 
-  // Reorder images in the gallery.
   visibleImages.forEach(image => gallery.appendChild(image));
 }
 
@@ -164,7 +177,11 @@ function updateTopCriteria() {
     const top3 = scores.slice(0, 3);
 
     let topContainer = card.querySelector('.top-criteria');
+    let allContainer = card.querySelector('.all-criteria');
+
     topContainer.innerHTML = "";
+    allContainer.innerHTML = "";
+
     top3.forEach(item => {
       let badge = document.createElement('span');
       badge.className = 'criteria-badge';
@@ -174,25 +191,32 @@ function updateTopCriteria() {
       topContainer.appendChild(badge);
     });
 
-    let allContainer = card.querySelector('.all-criteria');
-    let allCriteriaHTML = "<ul>";
     scores.forEach(item => {
+      let badge = document.createElement('span');
+      badge.className = 'criteria-badge';
       let formattedKey = item.key.replace(/_/g, " ");
       formattedKey = formattedKey.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-      allCriteriaHTML += `<li>${formattedKey}: ${item.value.toFixed(1)}</li>`;
+      badge.textContent = `${formattedKey}: ${item.value.toFixed(1)}`;
+      allContainer.appendChild(badge);
     });
-    allCriteriaHTML += "</ul>";
-    allContainer.innerHTML = allCriteriaHTML;
+
+    // Reset toggle: show top-3 and hide full criteria.
+    allContainer.classList.remove('show');
+    topContainer.classList.remove('criteria-hidden');
 
     let toggleButton = card.querySelector('.toggle-all-criteria');
     toggleButton.textContent = "Show All Scores";
+    toggleButton.classList.remove('expanded');
+
     toggleButton.onclick = function () {
       if (allContainer.classList.contains('show')) {
         allContainer.classList.remove('show');
+        topContainer.classList.remove('criteria-hidden');
         toggleButton.textContent = "Show All Scores";
         toggleButton.classList.remove('expanded');
       } else {
         allContainer.classList.add('show');
+        topContainer.classList.add('criteria-hidden');
         toggleButton.textContent = "Hide Scores";
         toggleButton.classList.add('expanded');
       }
