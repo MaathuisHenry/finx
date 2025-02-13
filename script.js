@@ -49,7 +49,7 @@ function loadState() {
     // Load card resize slider value.
     const cardResizeSlider = document.getElementById("card-resize-slider-input");
     if (state.cardResize) {
-      cardResizeSlider.value = state.cardResize;
+      cardResizeSlider.value = state.cardResize * 1.2;
       document.documentElement.style.setProperty("--card-min", state.cardResize + "px");
     }
   }
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Card resize slider functionality.
   const cardResizeSlider = document.getElementById("card-resize-slider-input");
   cardResizeSlider.addEventListener("input", function () {
-    const newSize = cardResizeSlider.value + "px";
+    const newSize = cardResizeSlider.value * 1.2 + "px";
     document.documentElement.style.setProperty("--card-min", newSize);
     saveState();
   });

@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dialog-label::after {
-  content: " ℹ";
+  content: "ℹ️";
   font-size: 0.9rem;
   color: var(--light-text);
   margin-left: 0.3rem;
