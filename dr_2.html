@@ -7,55 +7,74 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header / Navbar -->
-  <header>
-    <nav class="navbar">
-      <a href="index.html" class="logo-link">
-        <div class="logo">
-          <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
-        </div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="approach.html">Approach</a></li>
-        <li><a href="prototypes.html"><strong>Prototypes</strong></a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="funding.html">Funding</a></li>
-        <li><a href="partners.html">Partners</a></li>
-        <li><a href="contact.html">Contact</a></li>
+<!-- Header / Navbar -->
+<header>
+  <nav class="navbar">
+    <a href="index.html" class="logo-link">
+      <div class="logo">
+        <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="approach.html">Approach</a></li>
+      <li><a href="prototypes.html"><strong>Prototypes</strong></a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="funding.html">Funding</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main Content -->
+<main>
+  <section class="detail-container">
+    <!-- Detail Description -->
+    <article class="detail-left">
+      <h2>Decision Rules</h2>
+      <p>
+        This prototype focuses on rule-based fraud assessment. It visualizes how the system scores one specific category—<strong>payments</strong>—based on predefined business rules. Each rule evaluation contributes to an overall category outcome: <em>poor</em>, <em>average</em>, or <em>good</em>.
+      </p>
+      <br>
+      <p>
+        In this view, users can see what factors (e.g., payment issues or number of months insured) have influenced the system's judgment. Additionally, users are given the ability to override the system’s result via a "user decision" column. Furthermore, a counterfactual explanation is depicted to see what is needed to change the outcome from <em>average</em> to <em>good</em>.
+      </p>
+      <br>
+
+      <h3>Evaluated Prototype – User Feedback</h3>
+      <p>
+        While the structure was logical, users had difficulty grasping the interaction flow—particularly how overrides worked and how category scores were calculated or changed.
+      </p>
+      <br>
+      <h3>Improved Version – Design Iteration</h3>
+      <ul>
+        <li>The design was updated to visually suggest user interaction steps, making the process of navigating and updating decisions clearer without requiring live interaction.</li>
       </ul>
-    </nav>
-  </header>
+      <a href="prototypes.html" class="back-btn">← Back to Prototypes</a>
+    </article>
 
-  <!-- Main Content -->
-  <main>
-    <section class="detail-container">
-      <!-- Detail Description -->
-      <article class="detail-left">
-        <h2>Prototype Comparison</h2>
-        <p>
-          The image above shows the evaluated (original) prototype, while the image below presents the improved version.
-          Notice the refinements made to enhance usability and visual clarity. Hover over each image for a closer look.
-        </p>
-        <a href="prototypes.html" class="back-btn">← Back to Prototypes</a>
-      </article>
-      
-      <!-- Detail Images -->
-      <aside class="detail-right">
-        <figure class="detail-image evaluated">
-          <img src="images/dr_2.png" alt="Evaluated Prototype">
-          <figcaption>Evaluated Prototype</figcaption>
-        </figure>
-      </aside>
-    </section>
-  </main>
+    <!-- Detail Images -->
+    <aside class="detail-right double">
+      <figure class="detail-image evaluated">
+        <img src="images/dr_2.png" alt="Evaluated Prototype">
+        <figcaption>Evaluated Prototype</figcaption>
+      </figure>
+      <hr class="separator" />
+      <figure class="detail-image improved">
+        <img src="images/dr_2i.png" alt="Improved Prototype">
+        <figcaption>Improved Prototype</figcaption>
+      </figure>
+    </aside>
+  </section>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    <p>FIN-X. All rights reserved.</p>
-  </footer>
-  
-  <script src="script.js"></script>
+<!-- Footer -->
+<footer>
+  <p>FIN-X. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

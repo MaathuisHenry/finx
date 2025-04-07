@@ -7,55 +7,74 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header / Navbar -->
-  <header>
-    <nav class="navbar">
-      <a href="index.html" class="logo-link">
-        <div class="logo">
-          <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
-        </div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="approach.html">Approach</a></li>
-        <li><a href="prototypes.html"><strong>Prototypes</strong></a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="funding.html">Funding</a></li>
-        <li><a href="partners.html">Partners</a></li>
-        <li><a href="contact.html">Contact</a></li>
+<!-- Header / Navbar -->
+<header>
+  <nav class="navbar">
+    <a href="index.html" class="logo-link">
+      <div class="logo">
+        <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="approach.html">Approach</a></li>
+      <li><a href="prototypes.html"><strong>Prototypes</strong></a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="funding.html">Funding</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main Content -->
+<main>
+  <section class="detail-container">
+    <!-- Detail Description -->
+    <article class="detail-left">
+      <h2>Feature Importance</h2>
+      <p>
+        This prototype visualizes the top four most important factors contributing to the risk of car insurance fraud, as determined by a predictive model. The visualization focuses on factors that increase the predicted risk.
+        Factors that could mitigate or reduce the risk are not shown in this version, but may be relevant for alternative use cases or future iterations.
+      </p>
+      <br>
+      <h3>Evaluated Prototype – User Feedback</h3>
+      <p>
+        The initial version presented the key contributing factors, but some users found the scale ambiguous and requested a more intuitive, generalized depiction.
+      </p>
+      <br>
+      <h3>Improved Version – Design Iteration</h3>
+      <ul>
+        <li>The vertical axis labels were updated from "0" and "50" to "Low" and "High" to improve scale interpretability and make values like 41, 34, and 12 more meaningful.</li>
+        <li>The "Show all factors" button was repositioned directly beneath the initial list of visible features, strengthening the perceived relationship and clarifying that additional factors exist.</li>
+        <li>The graph legend was revised to include more explanatory text, enhancing clarity and general understanding.</li>
       </ul>
-    </nav>
-  </header>
 
-  <!-- Main Content -->
-  <main>
-    <section class="detail-container">
-      <!-- Detail Description -->
-      <article class="detail-left">
-        <h2>Prototype Comparison</h2>
-        <p>
-          The image above shows the evaluated (original) prototype, while the image below presents the improved version.
-          Notice the refinements made to enhance usability and visual clarity. Hover over each image for a closer look.
-        </p>
-        <a href="prototypes.html" class="back-btn">← Back to Prototypes</a>
-      </article>
-      
-      <!-- Detail Images -->
-      <aside class="detail-right">
-        <figure class="detail-image evaluated">
-          <img src="images/fi_1.png" alt="Evaluated Prototype">
-          <figcaption>Evaluated Prototype</figcaption>
-        </figure>
-      </aside>
-    </section>
-  </main>
+      <a href="prototypes.html" class="back-btn">← Back to Prototypes</a>
+    </article>
 
-  <!-- Footer -->
-  <footer>
-    <p>FIN-X. All rights reserved.</p>
-  </footer>
-  
-  <script src="script.js"></script>
+
+    <!-- Detail Images -->
+    <aside class="detail-right double">
+      <figure class="detail-image evaluated">
+        <img src="images/fi_1.png" alt="Evaluated Prototype">
+        <figcaption>Evaluated Prototype</figcaption>
+      </figure>
+      <hr class="separator" />
+      <figure class="detail-image improved">
+        <img src="images/fi_1i.png" alt="Improved Prototype">
+        <figcaption>Improved Prototype</figcaption>
+      </figure>
+    </aside>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>FIN-X. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

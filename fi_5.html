@@ -7,60 +7,74 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header / Navbar -->
-  <header>
-    <nav class="navbar">
-      <a href="index.html" class="logo-link">
-        <div class="logo">
-          <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
-        </div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="approach.html">Approach</a></li>
-        <li><a href="prototypes.html"><strong>Prototypes</strong></a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="funding.html">Funding</a></li>
-        <li><a href="partners.html">Partners</a></li>
-        <li><a href="contact.html">Contact</a></li>
+<!-- Header / Navbar -->
+<header>
+  <nav class="navbar">
+    <a href="index.html" class="logo-link">
+      <div class="logo">
+        <img src="images/finx_white.png" alt="FIN-X Logo" class="logo-img" />
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="approach.html">Approach</a></li>
+      <li><a href="prototypes.html"><strong>Prototypes</strong></a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="funding.html">Funding</a></li>
+      <li><a href="partners.html">Partners</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main Content -->
+<main>
+  <section class="detail-container">
+    <!-- Detail Description -->
+    <article class="detail-left">
+      <h2>Feature Importance</h2>
+      <p>
+        This prototype presents the top four most important features contributing to the predicted risk of car insurance fraud. These factors are those increasing the risk. Mitigating (positive) factors are not displayed, but could be useful for other use cases where a balanced explanation is preferred.
+      </p>
+      <br>
+
+      <h3>Evaluated Prototype – User Feedback</h3>
+      <p>
+        While the design aimed to visually distinguish risk factors using color, users found the meaning unclear—particularly the color usage in boxes and the styling of the “Show all factors” button.
+      </p>
+      <br>
+
+      <h3>Improved Version – Design Iteration</h3>
+      <ul>
+        <li>To improve user comprehension, the layout was refined and the box that had no corresponding value was visually neutralized by removing its color.</li>
+        <li>A legend was added to clearly explain the meaning of colors used in the feature boxes, supporting a stronger mental model for users.</li>
+        <li>The “Show all factors” button was also restyled to better communicate its function and avoid confusion with informational color coding.</li>
       </ul>
-    </nav>
-  </header>
 
-  <!-- Main Content -->
-  <main>
-    <section class="detail-container">
-      <!-- Detail Description -->
-      <article class="detail-left">
-        <h2>Prototype Comparison</h2>
-        <p>
-          The image above shows the evaluated (original) prototype, while the image below presents the improved version.
-          Notice the refinements made to enhance usability and visual clarity. Hover over each image for a closer look.
-        </p>
-        <a href="prototypes.html" class="back-btn">← Back to Prototypes</a>
-      </article>
-      
-      <!-- Detail Images -->
-      <aside class="detail-right double">
-        <figure class="detail-image evaluated">
-          <img src="images/fi_4.png" alt="Evaluated Prototype">
-          <figcaption>Evaluated Prototype</figcaption>
-        </figure>
-        <hr class="separator" />
-        <figure class="detail-image improved">
-          <img src="images/fi_5.png" alt="Improved Prototype">
-          <figcaption>Improved Prototype</figcaption>
-        </figure>
-      </aside>
-    </section>
-  </main>
+      <a href="prototypes.html" class="back-btn">← Back to Prototypes</a>
+    </article>
 
-  <!-- Footer -->
-  <footer>
-    <p>FIN-X. All rights reserved.</p>
-  </footer>
-  
-  <script src="script.js"></script>
+    <!-- Detail Images -->
+    <aside class="detail-right double">
+      <figure class="detail-image evaluated">
+        <img src="images/fi_5.png" alt="Evaluated Prototype">
+        <figcaption>Evaluated Prototype</figcaption>
+      </figure>
+      <hr class="separator" />
+      <figure class="detail-image improved">
+        <img src="images/fi_5i.png" alt="Improved Prototype">
+        <figcaption>Improved Prototype</figcaption>
+      </figure>
+    </aside>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>FIN-X. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
