@@ -2,6 +2,44 @@
 // 1 ("Low") → 1, 2 ("Med") → 7, 3 ("High") → 7.5.
 const sliderMapping = { "1": 1, "2": 7, "3": 7.5 };
 
+const resetButton = document.getElementById("reset-filters");
+
+if (resetButton) {
+  resetButton.addEventListener("click", function () {
+    // Reset all sliders to 1
+    document.querySelectorAll(".filter-menu input[type='range']").forEach((slider) => {
+      slider.value = 1;
+      const valueDisplay = document.getElementById(slider.id + "-value");
+      if (valueDisplay) {
+        valueDisplay.textContent = getSliderLabel(slider.value);
+      }
+    });
+
+    // Reset dropdown to default
+    const explanationDropdown = document.getElementById("explanation-dropdown");
+    if (explanationDropdown) {
+      explanationDropdown.value = "";
+    }
+
+    // Optionally reset sort dropdown too
+    const sortDropdown = document.getElementById("sort-dropdown");
+    if (sortDropdown) {
+      sortDropdown.value = "understandability";
+    }
+
+    // Optionally reset card size too
+    const cardResizeSlider = document.getElementById("card-resize-slider-input");
+    if (cardResizeSlider) {
+      cardResizeSlider.value = 350;
+      document.documentElement.style.setProperty("--card-min", "420px");
+    }
+
+    // Apply filters again and clear stored state
+    filterImages();
+    updateTopCriteria();
+    localStorage.removeItem("galleryState");
+  });
+}
 // Debounce helper to limit function execution rate.
 function debounce(func, delay) {
   let timeout;

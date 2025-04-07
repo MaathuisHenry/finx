@@ -6,74 +6,113 @@
   <title>About - FIN-X</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Remove bullet points and add spacing for better readability */
     ul {
-      list-style-type: none; /* Remove bullet points */
-      padding: 0; /* Remove default padding */
+      list-style-type: none;
+      padding: 0;
     }
-    
+
     li {
-      margin-bottom: 8px; /* Add some space between items */
+      margin-bottom: 8px;
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <a href="index.html">
-      <div class="logo">
-        <img src="images/finx_white.png" alt="Logo" class="logo-img">
+<nav class="navbar">
+  <a href="index.html">
+    <div class="logo">
+      <img src="images/finx_white.png" alt="Logo" class="logo-img">
+    </div>
+  </a>
+  <button class="menu-toggle" aria-label="Toggle navigation">
+    <span class="hamburger"></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html"><b>About</b></a></li>
+    <li><a href="approach.html">Approach</a></li>
+    <li><a href="prototypes.html">Prototypes</a></li>
+    <li><a href="publications.html">Publications</a></li>
+    <li><a href="funding.html">Funding</a></li>
+    <li><a href="partners.html">Partners</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- About Section -->
+<div class="main-content">
+  <section id="about">
+    <h2>About FIN-X</h2><br>
+    <p>The explainability of outcomes and processes in artificial intelligence (AI) applications is a crucial factor for trust among consumers and society — especially within the financial sector. In this project, we are developing tools to help internal users such as claims handlers and credit analysts interpret, evaluate, and communicate AI-driven outcomes. These professionals work directly with customers and must be able to explain decisions, particularly when outcomes like loan denials or fraud alerts are based on model predictions.</p><br>
+
+    <p>To explore what works—and what doesn’t—we created and tested explanations within a fictional but realistic use case: detecting potential car insurance fraud. Based on this scenario, we implemented designs for four common explanation types used in explainable AI systems: feature importance, counterfactuals, contrastive/similar examples, and rule-based explanations. Each format offers a different lens through which users can interpret a model’s decision, and we evaluated how well they score based on aspects such as understanding, trust, and actionability.</p><br>
+
+    <h3>Explanation Types</h3><br>
+
+    <p><strong>Feature Importance</strong> shows which input variables had the biggest influence on the model's decision. In the fraud detection case, this means showing which aspects of the claim—such as claim amount, claim timing, or prior claims—contributed most to the model labeling it as potentially fraudulent. This view helps users quickly identify “red flags” and assess whether the model’s reasoning aligns with their own.</p><br>
+
+    <figure>
+      <div class="image-group">
+        <img src="images/fi_1.png" alt="Feature Importance Example" />
       </div>
-    </a>
-    <!-- Hamburger Menu Toggle Button for Mobile -->
-    <button class="menu-toggle" aria-label="Toggle navigation">
-      <span class="hamburger"></span>
-    </button>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html"><b>About</b></a></li>
-      <li><a href="approach.html">Approach</a></li>
-      <li><a href="prototypes.html">Prototypes</a></li>
-      <li><a href="publications.html">Publications</a></li>
-      <li><a href="funding.html">Funding</a></li>
-      <li><a href="partners.html">Partners</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <figcaption>Feature importance highlights which variables were most influential in the prediction. High-impact features are surfaced at the top, making patterns easier to spot.</figcaption>
+    </figure><br>
+
+    <p><strong>Contrastive and Similar Examples</strong> provide users with real-world reference points. Similar examples show previously processed claims that received the same prediction—for instance, other high-risk cases—so users can see consistency. Contrastive examples show similar claims with different outcomes, such as medium- or low-risk decisions, allowing users to spot what changed. This format leverages known decisions to help users validate the current case by comparison.</p><br>
+
+    <figure>
+      <div class="image-group">
+        <img src="images/ce_3.png" alt="Feature Importance Example" />
+      </div>
+      <figcaption>Feature importance highlights which variables were most influential in the prediction. High-impact features are surfaced at the top, making patterns easier to spot.</figcaption>
+    </figure><br>
+
+    <p><strong>Counterfactuals</strong> explain what would need to change in order for the outcome to be different. For example, “If the claim amount were €2,000 lower, the model would not have flagged this as fraud.” These “what-if” scenarios make the model’s decision boundary more transparent and help users understand the logic behind the classification.</p><br>
+
+    <figure>
+      <div class="image-group">
+        <img src="images/cf_4.png" alt="Counterfactual Example" />
+      </div>
+      <figcaption>Counterfactuals help internal users understand how minor changes to inputs could affect the model’s decision, making the system’s boundaries more visible.</figcaption>
+    </figure><br>
+
+    <p><strong>Rule-based Explanations</strong> present the logic behind the decision in either plain-language rules or tree-like structures. These explanations are closer to how human experts reason: “If the claim amount is above €10,000 and submitted within 3 days of the incident, then mark as high risk.” Rule-based formats are helpful when users need traceability and a consistent rationale.</p><br>
+
+    <figure>
+      <div class="image-group">
+        <img src="images/dr_3.png" alt="Rule-based Explanation" />
+      </div>
+      <figcaption>Rule-based explanations show the decision path through rules or decision trees. This helps users retrace how a conclusion was reached.</figcaption>
+    </figure><br>
+
+    <h3>Objective</h3><br>
+    <p>The project aims to make a tangible contribution to the development of human-centered AI by providing tools that give internal users better insight into how AI systems function—and how their outcomes can be interpreted and acted upon.</p><br>
+
+    <h3>Results</h3><br>
+    <p>The project delivers practical guidelines in the form of tools and design patterns. These support the generation, communication, and evaluation of explanations. Our main audience includes designers, developers, and product teams building AI and explainable AI systems in high-stakes environments.</p><br>
+
+    <h3>Explanation Criteria for User Feedback</h3><br>
+    <p>We evaluate the quality of explanations based on user-centered criteria. These were derived from interviews, workshops, and design evaluations conducted with internal users:</p><br>
+    <ul>
+      <li><strong>Understandability:</strong> "Is the explanation easy to understand?"</li>
+      <li><strong>Ease of Understanding:</strong> "How easy is it to understand the explanation?"</li>
+      <li><strong>Ease of Use:</strong> "How easy is it to interact with or navigate through the explanation?"</li>
+      <li><strong>Satisfaction:</strong> "How satisfying is the explanation?"</li>
+      <li><strong>Usefulness:</strong> "How useful is the explanation in understanding the prediction?"</li>
+      <li><strong>Trust:</strong> "How much can you trust the explanation?"</li>
+      <li><strong>Typicality:</strong> "Does the explanation resemble what you would typically see for similar predictions?"</li>
+      <li><strong>Sufficiency:</strong> "Does the explanation provide all the information you need?"</li>
+      <li><strong>Correctness:</strong> "Is the explanation correct and consistent with the prediction?"</li>
+      <li><strong>Compactness:</strong> "Is the explanation clear and concise, without unnecessary details?"</li>
+      <li><strong>Actionability:</strong> "How helpful is the explanation in guiding what to do next?"</li>
     </ul>
-  </nav>
+  </section>
+</div>
 
-  <!-- About Section -->
-  <div class="main-content">
-    <section id="about">
-      <h2>About the Project</h2><br>
-      <p>The explainability of outcomes and processes in artificial intelligence (AI) applications is a crucial factor in fostering trust among consumers and society, especially within the financial sector. In this project, we are developing tools to translate the results of complex AI systems into understandable explanations for internal users, such as risk underwriters and claims handlers. This is important because these employees interact with customers and must be able to provide clear explanations, for example, when a customer's insurance claim is denied due to being flagged as fraudulent by an AI system.</p><br>
+<footer>
+  <p>FIN-X. All rights reserved.</p>
+</footer>
 
-      <h3>Objective</h3><br>
-      <p>The project aims to make a tangible contribution to the implementation of effective and human-centered AI applications by creating tools that provide internal users with better insights into how these systems work and the reasoning behind their outcomes.</p><br>
-
-      <h3>Results</h3><br>
-      <p>The project will deliver guidelines (in the form of tools and instruments) to assist in generating, communicating, and evaluating explanations. The primary target audience for these guidelines includes designers and developers of AI and explainable AI (XAI) systems.</p><br>
-
-      <h3>Explanation Criteria for User Feedback</h3><br>
-      <p>We assess the quality of AI explanations based on properties deemed meaningful for internal users of XAI systems.</p><br>
-      <ul>
-<li><strong>Understandability:</strong> "Is the explanation easy to understand?"</li>
-<li><strong>Ease of Understanding:</strong> "How easy is it to understand the explanation?"</li>
-<li><strong>Ease of Use:</strong> "How easy is it to interact with or navigate through the explanation?"</li>
-<li><strong>Satisfaction:</strong> "How satisfying is the explanation?"</li>
-<li><strong>Usefulness:</strong> "How useful is the explanation in understanding the prediction?"</li>
-<li><strong>Trust:</strong> "How much can you trust the explanation?"</li>
-<li><strong>Typicality:</strong> "Does the explanation resemble what you would typically see for similar predictions?"</li>
-<li><strong>Sufficiency:</strong> "Does the explanation provide all the information you need?"</li>
-<li><strong>Correctness:</strong> "Is the explanation correct and consistent with the prediction?"</li>
-<li><strong>Compactness:</strong> "Is the explanation clear and concise, without unnecessary details?"</li>
-<li><strong>Actionability:</strong> "How helpful is the explanation in guiding what to do next?"</li>
-      </ul>
-    </section>
-  </div>
-
-  <footer>
-    <p>FIN-X. All rights reserved.</p>
-  </footer>
 <script src="script.js"></script>
 </body>
 </html>

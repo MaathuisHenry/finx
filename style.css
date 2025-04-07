@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lato:wght@400;700&display=swap');
 
 /* ========================================================================
-   Global Variables
+   Global Variables & Base Styles
    ======================================================================== */
 :root {
   --primary-color: #2596be;
@@ -17,12 +17,7 @@
   --card-min: 350px;
 }
 
-/* ========================================================================
-   Global Styles
-   ======================================================================== */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -37,7 +32,6 @@ body {
   flex-direction: column;
   align-items: center;
   line-height: 1.6;
-  /* For a smooth background transition */
   transition: background-color 0.3s ease;
 }
 
@@ -45,18 +39,20 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* New Styles for No Results Visualization */
+/* ========================================================================
+   No Results Visualization
+   ======================================================================== */
 .no-results {
   grid-column: 1 / -1;
   text-align: center;
   padding: 2rem;
   color: var(--light-text);
 }
+
 .no-results img {
   max-width: 200px;
   margin-bottom: 1rem;
 }
-
 
 /* ========================================================================
    Navbar
@@ -88,7 +84,6 @@ h1, h2, h3, h4, h5, h6 {
   height: var(--navbar-height);
 }
 
-/* --- Navigation Links --- */
 .nav-links {
   list-style: none;
   display: flex;
@@ -123,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-/* --- Hamburger Toggle Button Styles --- */
+/* Hamburger Toggle Button */
 .menu-toggle {
   display: none;
   background: none;
@@ -152,13 +147,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.3s ease;
 }
 
-.hamburger::before {
-  top: -8px;
-}
-
-.hamburger::after {
-  top: 8px;
-}
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
 
 /* ========================================================================
    Filter Menu
@@ -167,7 +157,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   top: var(--navbar-height);
   left: 0;
-  bottom: var(--footer-height); /* Stops above the footer */
+  bottom: var(--footer-height);
   width: 25%;
   min-width: 380px;
   padding: 1.5rem;
@@ -183,17 +173,17 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease;
 }
 
-/* --- Custom Scrollbar for Filter Menu --- */
 .filter-menu::-webkit-scrollbar {
   width: 8px;
 }
+
 .filter-menu::-webkit-scrollbar-thumb {
   background-color: var(--border-color);
   border-radius: 4px;
 }
 
 .filter-menu h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: var(--accent-color);
@@ -201,7 +191,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid var(--border-color);
 }
 
-/* --- Slider Columns and Containers --- */
+/* Slider Columns & Containers */
 .slider-column {
   padding: 0 1rem;
 }
@@ -213,13 +203,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.5rem;
 }
 
-.dialog-label::after {
-  content: "ℹ️";
-  font-size: 0.9rem;
-  color: var(--light-text);
-  margin-left: 0.3rem;
-}
-
 .slider-container label {
   flex: 1;
   font-size: 1rem;
@@ -227,52 +210,65 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+/* NEW: Slider input base style for cross-browser compatibility */
+/* Remove extra padding and use a fixed height for the control's container.
+   The track is set to 8px, and the thumb (16px) is centered by a negative margin. */
 .slider-container input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
   flex: 1;
   max-width: 60%;
   margin-left: 1rem;
   cursor: pointer;
+  background: transparent;
+  /* Total height of the control (track area + space for thumb) */
+  height: 30px;
+  /* Remove extra padding to avoid interference */
+  padding: 0;
 }
 
-/* Webkit Range */
+/* Range Input Track */
 .slider-container input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
   background: var(--border-color);
   border-radius: 5px;
 }
-.slider-container input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: var(--primary-color);
-  border: 2px solid var(--white);
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: -4px;
-}
-
-/* Firefox Range */
 .slider-container input[type="range"]::-moz-range-track {
   height: 8px;
   background: var(--border-color);
   border-radius: 5px;
 }
-.slider-container input[type="range"]::-moz-range-thumb {
-  width: 16px;
+
+/* Range Input Thumb */
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
   height: 16px;
+  width: 16px;
+  background: var(--primary-color);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  /* Center the thumb vertically relative to the track */
+  margin-top: -4px;
+}
+.slider-container input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
   background: var(--primary-color);
   border: 2px solid var(--white);
   border-radius: 50%;
   cursor: pointer;
 }
 
+/* When focused */
 .slider-container input[type="range"]:focus {
   outline: none;
   background-color: #d3d3d3;
 }
 
-/* --- Dropdown --- */
+/* ========================================================================
+   Dropdown
+   ======================================================================== */
 .filter-menu .filter-dropdown {
   display: block;
   width: 100%;
@@ -297,7 +293,9 @@ h1, h2, h3, h4, h5, h6 {
   outline-offset: 2px;
 }
 
-/* --- Reset Filters Button --- */
+/* ========================================================================
+   Reset Filters Button
+   ======================================================================== */
 .filter-menu .reset-btn {
   background-color: var(--primary-color);
   color: var(--white);
@@ -311,6 +309,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   width: 100%;
 }
+
 .filter-menu .reset-btn:hover {
   background-color: var(--primary-dark);
 }
@@ -324,7 +323,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5rem;
 }
 
-/* --- Gallery Grid --- */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min)), 1fr));
@@ -337,7 +335,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease;
 }
 
-/* --- Gallery Header & Controls --- */
 .gallery-header {
   margin: 5rem auto;
   margin-left: max(25%, 380px);
@@ -356,36 +353,20 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
-.sort-by-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.sort-by-container span {
-  font-size: 1rem;
-  color: var(--text-color);
-}
-
-.sort-by-container select {
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  background-color: var(--white);
-  min-width: 200px;
-}
-
+.sort-by-container,
 .card-resize-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
+.sort-by-container span,
 .card-resize-container label {
   font-size: 1rem;
   color: var(--text-color);
 }
 
+.sort-by-container select,
 .card-resize-container input[type="range"] {
   padding: 0.5rem;
   border: 1px solid var(--border-color);
@@ -454,7 +435,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
 }
 
-/* --- Top-3 Criteria Badge Styles --- */
+/* ========================================================================
+   Top-3 Criteria Badge
+   ======================================================================== */
 .top-criteria {
   margin-top: 1rem;
   padding-top: 0.5rem;
@@ -464,7 +447,9 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
 }
 
-/* --- All Criteria Container (initially hidden) --- */
+/* ========================================================================
+   All Criteria Container (initially hidden)
+   ======================================================================== */
 .all-criteria {
   display: flex;
   flex-wrap: wrap;
@@ -475,14 +460,15 @@ h1, h2, h3, h4, h5, h6 {
   transition: max-height 0.4s ease, opacity 0.4s ease;
 }
 
-/* When expanded, show all criteria with extra top margin for spacing */
 .all-criteria.show {
   max-height: 500px;
   opacity: 1;
   margin-top: 1rem;
 }
 
-/* --- Badge Styling (applied to both top and all criteria) --- */
+/* ========================================================================
+   Badge Styling
+   ======================================================================== */
 .criteria-badge {
   background-color: var(--primary-color);
   color: var(--white);
@@ -492,7 +478,9 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9rem;
 }
 
-/* --- Toggle All Criteria Button & Disclosure --- */
+/* ========================================================================
+   Toggle All Criteria Button
+   ======================================================================== */
 .toggle-all-criteria {
   background-color: var(--accent-color);
   color: var(--white);
@@ -506,20 +494,25 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   padding-right: 30px;
 }
+
 .toggle-all-criteria:hover {
   background-color: var(--primary-dark);
 }
+
 .toggle-all-criteria::after {
   content: "▼";
   position: absolute;
   right: 10px;
   transition: transform 0.3s ease;
 }
+
 .toggle-all-criteria.expanded::after {
   transform: rotate(180deg);
 }
 
-/* A new class to hide the top criteria container when showing all 11 */
+/* ========================================================================
+   Hide top criteria container when showing all
+   ======================================================================== */
 .criteria-hidden {
   display: none;
 }
@@ -545,7 +538,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================================================
-   Modal (Unused)
+   Modal
    ======================================================================== */
 .modal {
   display: none;
@@ -559,11 +552,13 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgba(0, 0, 0, 0.85);
   z-index: 1000;
 }
+
 .modal.show {
   display: flex;
   opacity: 1;
   transition: opacity 0.3s ease;
 }
+
 .modal-content {
   max-width: 60%;
   background-color: var(--white);
@@ -571,6 +566,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px;
   text-align: center;
 }
+
 .close {
   position: absolute;
   top: 10px;
@@ -579,6 +575,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--white);
   cursor: pointer;
 }
+
 .hidden {
   display: none;
 }
@@ -614,6 +611,7 @@ form label {
   display: block;
   margin-bottom: 0.5rem;
 }
+
 form input,
 form textarea {
   width: 100%;
@@ -624,15 +622,18 @@ form textarea {
   transition: all 0.3s ease;
   font-family: 'Lato', sans-serif;
 }
+
 form input:focus,
 form textarea:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 5px rgba(37, 150, 190, 0.5);
 }
+
 form textarea {
   resize: vertical;
 }
+
 form input[type="submit"] {
   background-color: var(--primary-color);
   color: var(--white);
@@ -643,10 +644,12 @@ form input[type="submit"] {
   transition: background-color 0.3s ease, transform 0.2s ease;
   border-radius: 6px;
 }
+
 form input[type="submit"]:hover {
   background-color: var(--primary-dark);
   transform: scale(1.03);
 }
+
 .toggle-btn {
   background-color: #3498db;
   color: var(--white);
@@ -657,10 +660,12 @@ form input[type="submit"]:hover {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .toggle-btn:hover {
   background-color: #2980b9;
   transform: scale(1.03);
 }
+
 .toggle-btn:active {
   transform: scale(0.98);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -677,10 +682,12 @@ section {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
+
 h2 {
   font-size: 1.5rem;
   color: var(--text-color);
 }
+
 p {
   font-size: 1rem;
   color: var(--light-text);
@@ -699,23 +706,22 @@ p {
     border-right: none;
     border-radius: 0;
   }
-  
+
   .gallery {
     width: calc(100% - 2rem);
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: 0 1rem;
   }
-  
+
   .gallery-header {
     margin: 5rem 1rem 0 1rem;
     width: calc(100% - 2rem);
     padding: 0 1rem;
   }
-  
+
   .menu-toggle {
     display: block;
   }
-  
+
   .nav-links {
     position: absolute;
     top: var(--navbar-height);
@@ -729,13 +735,13 @@ p {
     pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  
+
   .nav-links.active {
     transform: scaleY(1);
     opacity: 1;
     pointer-events: auto;
   }
-  
+
   .nav-links li {
     margin: 1rem 0;
     text-align: center;
@@ -743,7 +749,7 @@ p {
 }
 
 /* ========================================================================
-   Detail Page Styles (Enhanced for Prototype Comparison)
+   Detail Page Styles
    ======================================================================== */
 .detail-container {
   display: flex;
@@ -753,10 +759,12 @@ p {
   gap: 2rem;
   align-items: flex-start;
 }
+
 .detail-left {
   flex: 1;
   min-width: 300px;
 }
+
 .detail-right {
   flex: 2;
   min-width: 300px;
@@ -766,12 +774,14 @@ p {
   align-items: center;
   justify-content: center;
 }
+
 .detail-image {
   width: 100%;
   max-width: 800px;
   text-align: center;
   margin: 0 auto;
 }
+
 .detail-image img {
   width: 100%;
   height: auto;
@@ -781,9 +791,11 @@ p {
   display: block;
   transition: transform 0.3s ease;
 }
+
 .detail-image img:hover {
   transform: scale(1.05);
 }
+
 .detail-image figcaption {
   margin-top: 0.5rem;
   font-size: 0.9rem;
@@ -802,8 +814,40 @@ p {
   border-radius: 6px;
   transition: background-color 0.3s ease;
 }
+
 .back-btn:hover {
   background-color: var(--primary-dark);
 }
+.image-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
 
+.image-group img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-height: 320px;
+  object-fit: contain;
+}
 
+figure {
+  text-align: center;
+  margin: 2rem 0;
+}
+figcaption {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+article {
+  margin-bottom: 2.5rem;
+}
+
+.image-group img:hover {
+  transform: scale(1.03);
+  transition: transform 0.2s ease;
+}
